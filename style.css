@@ -13,13 +13,16 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; width: 100%; }
 body {
   font-family: var(--font-sans);
   background: var(--light);
   color: var(--blue);
   min-height: 100vh;
   padding: 20px;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* CONTROLS */
@@ -85,6 +88,7 @@ body {
   background: var(--white);
   padding: 48px;
   box-shadow: 0 4px 40px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 /* HEADER */
@@ -490,4 +494,105 @@ body {
   .measurements-grid { grid-template-columns: repeat(2, 1fr); }
   .payment-grid { grid-template-columns: 1fr; }
   .controls { flex-direction: column; gap: 16px; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body { padding: 12px; }
+
+  .controls {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .controls-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-print, .btn-clear {
+    width: 100%;
+    text-align: center;
+  }
+
+  .invoice { padding: 24px 16px; }
+
+  .invoice-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .invoice-label {
+    font-size: 36px;
+    text-align: left;
+  }
+
+  .meta-row {
+    justify-content: flex-start;
+  }
+
+  .meta-val { text-align: left; min-width: 80px; }
+
+  .invoice-parties {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .party-box-right {
+    border-left: none;
+    padding-left: 0;
+    border-top: 1px solid var(--blue-light);
+    padding-top: 20px;
+  }
+
+  .measurements-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .invoice-table {
+    font-size: 11px;
+  }
+
+  .invoice-table th,
+  .invoice-table td {
+    padding: 8px 8px;
+  }
+
+  /* Hide unit price on very small screens, show amount */
+  .invoice-table th:nth-child(4),
+  .invoice-table td:nth-child(4) {
+    display: none;
+  }
+
+  .totals-wrap {
+    justify-content: stretch;
+  }
+
+  .totals-box {
+    width: 100%;
+  }
+
+  .payment-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .invoice-footer {
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 380px) {
+  .invoice { padding: 16px 12px; }
+  .brand-name { font-size: 20px; }
+  .invoice-label { font-size: 28px; }
+  .measurements-grid { grid-template-columns: 1fr 1fr; }
+  .total-final span:last-child { font-size: 16px; }
 }
