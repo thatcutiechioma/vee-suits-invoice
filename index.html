@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>VEE SUITS — Invoice Generator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- CONTROLS — hidden when printing -->
+  <div class="controls">
+    <div class="controls-logo">VEE SUITS</div>
+    <div class="controls-btns">
+      <button onclick="window.print()" class="btn-print">🖨 Print / Save as PDF</button>
+      <button onclick="clearInvoice()" class="btn-clear">↺ Clear</button>
+    </div>
+  </div>
+
+  <!-- INVOICE -->
+  <div class="invoice" id="invoice">
+
+    <!-- HEADER -->
+    <div class="invoice-header">
+      <div class="header-left">
+        <img src="logo.png" alt="VEE SUITS" class="invoice-logo" onerror="this.style.display='none'"/>
+        <div class="brand-name">VEE SUITS</div>
+        <div class="brand-tagline">Styling Clasic Men</div>
+      </div>
+      <div class="header-right">
+        <div class="invoice-label">INVOICE</div>
+        <div class="invoice-meta">
+          <div class="meta-row">
+            <span class="meta-key">Invoice No.</span>
+            <span contenteditable="true" class="meta-val editable">#001</span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">Date</span>
+            <span contenteditable="true" class="meta-val editable" id="invoice-date"></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">Due Date</span>
+            <span contenteditable="true" class="meta-val editable"></span>
+          </div>
+          <div class="meta-row">
+            <span class="meta-key">Status</span>
+            <span contenteditable="true" class="meta-val editable status-badge">Unpaid</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div class="gold-bar"></div>
+
+    <!-- FROM / TO -->
+    <div class="invoice-parties">
+      <div class="party-box">
+        <div class="party-label">FROM</div>
+        <div class="party-name">VEE SUITS</div>
+        <div contenteditable="true" class="party-detail editable">ewapjsamuel@gmail.com</div>
+        <div contenteditable="true" class="party-detail editable">+234 909 937 3976</div>
+        <div class="party-detail">
+          <a href="https://instagram.com/veesuits" target="_blank">@veesuits</a>
+        </div>
+      </div>
+      <div class="party-box party-box-right">
+        <div class="party-label">BILL TO</div>
+        <div contenteditable="true" class="party-name editable">Client Name</div>
+        <div contenteditable="true" class="party-detail editable">client@email.com</div>
+        <div contenteditable="true" class="party-detail editable">Phone Number</div>
+        <div contenteditable="true" class="party-detail editable">Address / Location</div>
+      </div>
+    </div>
+
+    <!-- MEASUREMENTS (optional) -->
+    <div class="section-title">Measurements <span class="optional">(optional)</span></div>
+    <div class="measurements-grid">
+      <div class="measure-item">
+        <span class="measure-label">Chest</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+      <div class="measure-item">
+        <span class="measure-label">Waist</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+      <div class="measure-item">
+        <span class="measure-label">Hips</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+      <div class="measure-item">
+        <span class="measure-label">Shoulder</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+      <div class="measure-item">
+        <span class="measure-label">Sleeve</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+      <div class="measure-item">
+        <span class="measure-label">Trouser Length</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+      <div class="measure-item">
+        <span class="measure-label">Inseam</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+      <div class="measure-item">
+        <span class="measure-label">Neck</span>
+        <span contenteditable="true" class="measure-val editable">—</span>
+      </div>
+    </div>
+
+    <!-- ITEMS TABLE -->
+    <div class="section-title">Items & Services</div>
+    <table class="invoice-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Description</th>
+          <th>Qty</th>
+          <th>Unit Price (₦)</th>
+          <th>Amount (₦)</th>
+        </tr>
+      </thead>
+      <tbody id="items-body">
+        <tr>
+          <td>1</td>
+          <td contenteditable="true" class="editable">Bespoke 3-Piece Suit</td>
+          <td contenteditable="true" class="editable qty">1</td>
+          <td contenteditable="true" class="editable price">150,000</td>
+          <td class="amount">150,000</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td contenteditable="true" class="editable">Fabric Selection</td>
+          <td contenteditable="true" class="editable qty">1</td>
+          <td contenteditable="true" class="editable price">50,000</td>
+          <td class="amount">50,000</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td contenteditable="true" class="editable"></td>
+          <td contenteditable="true" class="editable qty"></td>
+          <td contenteditable="true" class="editable price"></td>
+          <td class="amount"></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td contenteditable="true" class="editable"></td>
+          <td contenteditable="true" class="editable qty"></td>
+          <td contenteditable="true" class="editable price"></td>
+          <td class="amount"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ADD ROW button -->
+    <button class="btn-add-row no-print" onclick="addRow()">+ Add Row</button>
+
+    <!-- TOTALS -->
+    <div class="totals-wrap">
+      <div class="totals-box">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span id="subtotal">₦200,000</span>
+        </div>
+        <div class="total-row">
+          <span>Discount</span>
+          <span contenteditable="true" class="editable" id="discount">₦0</span>
+        </div>
+        <div class="total-row">
+          <span>Deposit Paid</span>
+          <span contenteditable="true" class="editable" id="deposit">₦0</span>
+        </div>
+        <div class="total-row total-final">
+          <span>Balance Due</span>
+          <span id="balance">₦200,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAYMENT INFO -->
+    <div class="section-title">Payment Details</div>
+    <div class="payment-grid">
+      <div class="payment-item">
+        <span class="payment-label">Bank Name</span>
+        <span contenteditable="true" class="payment-val editable">Wema Bank</span>
+      </div>
+      <div class="payment-item">
+        <span class="payment-label">Account Name</span>
+        <span contenteditable="true" class="payment-val editable">PraiseJah Ewa</span>
+      </div>
+      <div class="payment-item">
+        <span class="payment-label">Account Number</span>
+        <span contenteditable="true" class="payment-val editable">0274460283</span>
+      </div>
+      <div class="payment-item">
+        <span class="payment-label">Payment Method</span>
+        <span contenteditable="true" class="payment-val editable">Bank Transfer / Cash</span>
+      </div>
+    </div>
+
+    <!-- NOTES -->
+    <div class="section-title">Notes</div>
+    <div contenteditable="true" class="notes editable">
+      Thank you for choosing VEE SUITS. All orders require a 50% deposit before work begins. Balance is due upon completion. Please confirm your measurements before production starts.
+    </div>
+
+    <!-- FOOTER -->
+    <div class="gold-bar" style="margin-top: 32px;"></div>
+    <div class="invoice-footer">
+      <span>VEE SUITS — Styling Classic Men</span>
+      <span>@veesuits</span>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
