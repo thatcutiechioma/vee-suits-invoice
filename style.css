@@ -102,14 +102,20 @@ body {
 .header-left {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 6px;
 }
 
+.logo-container {
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
 .invoice-logo {
-  height: 60px;
+  height: 130px;
   width: auto;
   object-fit: contain;
-  margin-bottom: 8px;
+  display: block;
 }
 
 .brand-name {
@@ -595,4 +601,70 @@ body {
   .invoice-label { font-size: 28px; }
   .measurements-grid { grid-template-columns: 1fr 1fr; }
   .total-final span:last-child { font-size: 16px; }
+}
+
+@media print {
+  @page {
+    margin: 0;
+    size: A4;
+  }
+
+  body {
+    background: white;
+    padding: 0;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .controls { display: none; }
+  .no-print { display: none; }
+
+  .invoice {
+    box-shadow: none;
+    padding: 32px;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .editable { border-bottom: none; }
+
+  /* Make sure all colors and borders print */
+  .invoice-table thead tr {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .gold-bar {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .total-final {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .measurements-grid {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .payment-grid {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+.controls-tip {
+  font-size: 10px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  max-width: 340px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.controls-tip strong {
+  color: var(--gold);
+  font-weight: 600;
 }

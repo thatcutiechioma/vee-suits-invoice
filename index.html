@@ -10,8 +10,11 @@
 <body>
 
   <!-- CONTROLS — hidden when printing -->
-  <div class="controls">
+ <div class="controls">
     <div class="controls-logo">VEE SUITS</div>
+    <div class="controls-tip">
+      ℹ️ Before printing: Uncheck <strong>Headers & Footers</strong> · Set <strong>Margins</strong> to None · Check <strong>Background Graphics</strong>
+    </div>
     <div class="controls-btns">
       <button onclick="window.print()" class="btn-print">🖨 Print / Save as PDF</button>
       <button onclick="clearInvoice()" class="btn-clear">↺ Clear</button>
@@ -24,10 +27,11 @@
     <!-- HEADER -->
     <div class="invoice-header">
       <div class="header-left">
-        <img src="logo.png" alt="VEE SUITS" class="invoice-logo" onerror="this.style.display='none'"/>
-        <div class="brand-name">VEE SUITS</div>
-        <div class="brand-tagline">Styling Clasic Men</div>
-      </div>
+  <div class="logo-container">
+    <img src="logo.jpeg" alt="VEE SUITS" class="invoice-logo"/>
+  </div>
+  <div class="brand-tagline">Styling Classic Men</div>
+</div>
       <div class="header-right">
         <div class="invoice-label">INVOICE</div>
         <div class="invoice-meta">
